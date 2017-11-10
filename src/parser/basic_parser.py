@@ -6,7 +6,6 @@
 
 from ..utils.basic_definition import *
 from ..utils.exception import *
-import requests
 from ..loader.basic_loader import BasicLoader
 import logging
 import re
