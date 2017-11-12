@@ -15,6 +15,13 @@ class LoaderException(Exception):
     def __str__(self):
         return repr(self.value)
 
+class TimeoutException(Exception):
+    def __init__(self, value):
+        self.value = "TimeoutException: {}".format(value)
+    def __str__(self):
+        return repr(self.value)
+
+
 class GeneratorException(Exception):
     def __init__(self, value):
         self.value = "GeneratorException: {}".format(value)
