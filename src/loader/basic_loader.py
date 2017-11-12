@@ -5,8 +5,29 @@
 
 from ..utils.exception import LoaderException
 import requests
+from loader_interface import *
 
-class BasicLoader(object):
+class BasicLoader(LoaderInterface):
+    def __init__(self,
+                timeout,
+                time_interval,
+                num_retries,
+                header=None,
+                post=None):
+        super(BasicLoader, self).__init__()
+        self.timeout = timeout
+        self.time_interval = time_interval
+        self.num_retries = num_retries
+        self.header = header
+        self.post = post
+
+    def load(self, url):
+        super(BasicLoader, self).load(url)
+        content = BasicLoader.load_url(url,
+                self.post, self.header, self.timeout,
+                self.time_interval, self.num_retries)
+        return content
+
     @staticmethod
     def load_url(url, data, header, timeout, time_interval, num_retries):
         for _ in range(num_retries):
